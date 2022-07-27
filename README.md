@@ -1,7 +1,6 @@
 # Deploy-archipelago-classic
 
-If you need to deploye a classic archipelago with no/low modification, this is the good place to be.
-However, if you want to custom your own archipelago use this repos https://github.com/data-players/deploy-archipelago-custom
+The easiest way to deploy an archipelago with few customisation thing ! 
 
 ## Introduction
 
@@ -13,14 +12,15 @@ Make sure you have an usable domain name, then create 3 sub-domain :
 
 ## 1 Fork the Deploye repo
 
-Fork this project to get your own version and work on it.
+Fork this project to get your own version.
 
 ### Local test
 
-You can test localy on your device by using the .dev docker-compose : 
+You can test localy on your device by using the .local docker-compose : 
 ```
-docker-compose -f docker-compose-dev.yaml up
+make start-local
 ```
+To stop it : ``` make stop-local ```
 Frontend on http://localhost:4000/
 Middleware on http://localhost:3000/
 Fuseki database on http://localhost:3030 (user: admin, password : admin)
@@ -36,15 +36,15 @@ This is because MapBox Access Token is not define in the docker-compose file. Th
 Some variables in the docker-compose file are default values. You need to replace them with yours to make it works.
 - line 18 myEmail@myemail.fr
 - line 39 MyJenaPassword
-- line 56 MyJenaPassword
-- line 57 https://data.myDomain.com/ (middleware URL)
-- line 67 data.myDomain.com (middleware domain name)
-- line 76 https://data.myDomain.com/ (middleware URL)
-- line 77 MyMapBoxToken (obtain an access token : https://docs.mapbox.com/help/getting-started/access-tokens/)
-- line 88 myDomain.com (Your domain name)
-- line 98 https://login.myDomain.com/auth (Login URL)
-- line 96 myKeycloakPassword (To access OIDC amdin page)
-- line 115 login.mydomain.com (Login domain name)
+- line 62 MyJenaPassword
+- line 63 https://data.myDomain.com/ (middleware URL)
+- line 74 data.myDomain.com (middleware domain name)
+- line 81 https://data.myDomain.com/ (middleware URL)
+- line 82 MyMapBoxToken (obtain an access token : https://docs.mapbox.com/help/getting-started/access-tokens/)
+- line 93 myDomain.com (Your domain name)
+- line 101 myKeycloakPassword (To access OIDC amdin page)
+- line 103 https://login.myDomain.com/auth (Login URL)
+- line 120 login.mydomain.com (Login domain name)
 
 Of course you have to set up your domain name and sub domain name in your domain provider to make it works !
 
@@ -53,7 +53,7 @@ Of course you have to set up your domain name and sub domain name in your domain
 Launch your app by making a 
 
 ```
-docker-compose up -d
+make start-prod
 ```
 
 If you need to force dockers to restart add : --force-recreate
@@ -113,8 +113,8 @@ https://www.npmjs.com/package/wait-on
 ###### CAS
 https://semapps.org/docs/middleware/auth
 
-1 tel quel
-2 les commun
+1 Laisser le keycloak par défault
+2 les commun.org - Faire une demande sur le chat des communs https://chat.lescommuns.org/channel/accueil
 3 d'autre system d'authentification que oicd, jwt / cas
 
 #### Restart
@@ -122,3 +122,22 @@ Don't forget to restart
 ```
 docker-compose up -d --force-recreate
 ```
+
+## Other
+
+If you need to use local dockerfile, you can use :
+```
+make start-dockerfile 
+```
+instead.
+
+### compact
+
+To compact your data you can use make compact.
+You can also use :
+```
+make set-compact-cron
+```
+This will create a cron job to compact data every day at 4am. The cron will use compact-cron.sh
+
+This method, will shut down your service for 2min a 4am, so use it wisely.
