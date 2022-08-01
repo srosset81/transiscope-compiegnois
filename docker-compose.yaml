@@ -15,7 +15,7 @@ services:
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=simon.louvet@gmail.fr"
+      - "--certificatesresolvers.myresolver.acme.email=myEmail@myemail.fr"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
@@ -55,7 +55,6 @@ services:
       - ./middleware/logs:/archipelago/middleware/logs
       - ./middleware/jwt:/archipelago/middleware/jwt
       - ./middleware/uploads:/archipelago/middleware/uploads
-      - ./addOn:/archipelago/middleware/addOn
     environment:
       - SEMAPPS_SPARQL_ENDPOINT=http://fuseki:3030/
       - SEMAPPS_MAIN_DATASET=localData
