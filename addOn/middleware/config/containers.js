@@ -9,6 +9,7 @@ const writePermissionsToCreator = creatorUri => {
     },
     anyUser: {
       read: true,
+      write: true,
     },
     user: {
       uri: creatorUri,
