@@ -5,7 +5,7 @@ import { theme } from '@semapps/archipelago-layout';
 const defaultTheme = createTheme();
 
 //Change this color to change AppBar color
-const primary = '#28ccfb';
+const primary = '#005259';
 
 
 let customTheme = createTheme({

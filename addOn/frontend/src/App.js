@@ -20,7 +20,7 @@ const App = () => (
     disableTelemetry
     history={history}
     // Change your App Name (In app bar)
-    title="MyArchipelago"
+    title="Transiscope Nantes"
     authProvider={authProvider}
     dataProvider={dataProvider}
     i18nProvider={i18nProvider}
