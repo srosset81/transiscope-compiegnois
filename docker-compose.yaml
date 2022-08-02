@@ -59,7 +59,7 @@ services:
       - SEMAPPS_SPARQL_ENDPOINT=http://fuseki:3030/
       - SEMAPPS_MAIN_DATASET=localData
       - SEMAPPS_JENA_USER=admin
-      - SEMAPPS_JENA_PASSWORD=MyFusekiPassword
+      - SEMAPPS_JENA_PASSWORD=Tr@ns1sc0pe
       - SEMAPPS_HOME_URL=https://data.nantes.transiscope.org/
       - SEMAPPS_OIDC_ISSUER=https://login.lescommuns.org/auth/realms/master/
       - SEMAPPS_OIDC_CLIENT_ID=semapps
