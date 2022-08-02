@@ -5,8 +5,8 @@ module.exports = {
   settings: {
     baseUrl: process.env.SEMAPPS_HOME_URL,
     superAdmins: [
-      'http://localhost:3000/persons/simon.louvet.zen',
-      'https://data.nantes.transiscope.org/persons/simon.louvet.zen',
+      'http://localhost:3000/users/simon.louvet.zen',
+      'https://data.nantes.transiscope.org/users/simon.louvet.zen',
     ]
   }
 };
