@@ -36,7 +36,7 @@ services:
     networks:
       - semapps
     environment:
-      ADMIN_PASSWORD: "MyFusekiPassword"
+      ADMIN_PASSWORD: "Tr@ns1sc0pe"
 
   fuseki_compact:
     image: semapps/jena-fuseki-webacl:latest
@@ -50,7 +50,6 @@ services:
     image: dataplayers/archipelago-middleware:0.1
     depends_on:
       - fuseki
-      - keycloak
     volumes:
       - ./middleware/logs:/archipelago/middleware/logs
       - ./middleware/jwt:/archipelago/middleware/jwt
@@ -62,7 +61,7 @@ services:
       - SEMAPPS_JENA_USER=admin
       - SEMAPPS_JENA_PASSWORD=MyFusekiPassword
       - SEMAPPS_HOME_URL=https://data.nantes.transiscope.org/
-      - 'SEMAPPS_OIDC_ISSUER=http://keycloak:8080/auth/realms/DP/'
+      - SEMAPPS_OIDC_ISSUER=https://login.lescommuns.org/auth/realms/master/
       - SEMAPPS_OIDC_CLIENT_ID=semapps
       - SEMAPPS_REDIS_URL=redis://redis:6379/0
     command: bash -c "cp -r ./addOn/middleware/* . && pm2-runtime 'yarn run dev'"
@@ -80,7 +79,7 @@ services:
     image:  dataplayers/archipelago-frontend:0.1
     environment:
       - REACT_APP_MIDDLEWARE_URL=https://data.nantes.transiscope.org/
-      - REACT_APP_MAPBOX_ACCESS_TOKEN=MyMapBoxToken
+      - REACT_APP_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoic3Jvc3NldDgxIiwiYSI6ImNrbDd0b2VkMzA1dDMycG9iemU4NnpuemsifQ.HvpZ3tnweVHEUYLb0tDvTg
       - PORT=4000
     volumes:
       - ./addOn:/archipelago/frontend/addOn
@@ -94,44 +93,6 @@ services:
       - "traefik.http.routers.frontend.rule=Host(`nantes.transiscope.org`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
-
-  keycloak:
-    image: jboss/keycloak
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: myKeycloakPassword
-      KEYCLOAK_IMPORT: /tmp/realm-export.json
-      KEYCLOAK_FRONTEND_URL: 'https://login.nantes.transiscope.org/auth'
-      DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_SCHEMA: public
-      DB_PASSWORD: password
-    depends_on:
-      - postgres
-    volumes:
-      - './realm-export.json:/tmp/realm-export.json'
-    ports:
-      - '8080:8080'
-    networks:
-      - semapps
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.keycloak.rule=Host(`login.nantes.transiscope.org`)"
-      - "traefik.http.routers.keycloak.entrypoints=websecure"
-      - "traefik.http.routers.keycloak.tls.certresolver=myresolver"
-
-  postgres:
-    image: postgres
-    volumes:
-      - './keycloak/postgres:/var/lib/postgresql/data'
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
-    networks:
-      - semapps
 
   redis:
     image: redis
