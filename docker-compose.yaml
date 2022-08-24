@@ -47,7 +47,7 @@ services:
       - ./data/fuseki:/fuseki
 
   middleware:
-    image: dataplayers/archipelago-middleware:0.1
+    image: dataplayers/archipelago-middleware:0.2
     depends_on:
       - fuseki
     volumes:
@@ -76,7 +76,7 @@ services:
       - "traefik.http.routers.middleware.tls.certresolver=myresolver"
 
   frontend:
-    image:  dataplayers/archipelago-frontend:0.1
+    image:  dataplayers/archipelago-frontend:0.2
     environment:
       - REACT_APP_MIDDLEWARE_URL=https://data.nantes.transiscope.org/
       - REACT_APP_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoic3Jvc3NldDgxIiwiYSI6ImNrbDd0b2VkMzA1dDMycG9iemU4NnpuemsifQ.HvpZ3tnweVHEUYLb0tDvTg
