@@ -37,7 +37,12 @@ module.exports = [
     preferredView: '/Organization',
     dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress', 'pair:organizationOfMembership'],
     disassembly: [{ path: 'pair:organizationOfMembership', container: CONFIG.HOME_URL + 'membership-associations' }],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: writePermissionsToCreator,
+    ldpDereferencePlan :[
+      {
+        p:'pair:organizationOfMembership'
+      }
+    ]
   },
   {
     path: '/membership-associations',
