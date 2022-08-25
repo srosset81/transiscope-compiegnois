@@ -80,6 +80,11 @@ module.exports = [
     preferredView: '/Person',
     acceptedTypes: ['pair:Person'],
     dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress'],
+    ldpDereferencePlan :[
+      {
+        p:'pair:actorOfMembership'
+      }
+    ]
   },
   {
     path: '/bots',
