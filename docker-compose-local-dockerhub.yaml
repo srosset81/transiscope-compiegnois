@@ -47,8 +47,7 @@ services:
 
   frontend:
     image: dataplayers/archipelago-frontend:0.1
-    environment:!
-
+    environment:
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=MyMapBoxToken
       - PORT=4000
