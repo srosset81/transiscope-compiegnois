@@ -21,12 +21,9 @@ services:
       - ./data/fuseki:/fuseki
 
   middleware:
-    build:
-      dockerfile: ./../archipelago-build-dockerhub/Dockerfile.mid
-    container_name: middleware
+    image: dataplayers/archipelago-middleware:0.1
     depends_on:
       - fuseki
-      - redis
       - keycloak
     volumes:
       - './middleware/logs:/archipelago/middleware/logs'
@@ -49,9 +46,9 @@ services:
       - '3000:3000'
 
   frontend:
-    build:
-      dockerfile: ./../archipelago-build-dockerhub/Dockerfile.front
-    environment:
+    image: dataplayers/archipelago-frontend:0.1
+    environment:!
+
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=MyMapBoxToken
       - PORT=4000

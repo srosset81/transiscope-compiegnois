@@ -1,8 +1,6 @@
 import { createTheme } from '@material-ui/core/styles';
-import { theme } from '@semapps/archipelago-layout';
+import theme from './config/theme';
 
-// Allow to use breakpoints
-const defaultTheme = createTheme();
 
 //Change this color to change AppBar color
 const primary = '#005259';
