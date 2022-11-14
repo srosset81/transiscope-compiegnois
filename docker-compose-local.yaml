@@ -22,7 +22,8 @@ services:
 
   middleware:
     build:
-      dockerfile: ./../archipelago-build-dockerhub/Dockerfile.mid
+      context: ./../archipelago-build-dockerhub/
+      dockerfile: Dockerfile.mid
     container_name: middleware
     depends_on:
       - fuseki
