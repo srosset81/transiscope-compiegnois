@@ -1,6 +1,6 @@
 # customisation de Archipelago pour Transiscope en pays nantais
 
-pour accéder à l'outil et decovrire le projet : nantes.transiscope.org.
+pour accéder à l'outil et decovrire le projet : https://nantes.transiscope.org/
 
 ## lancer le logiciel localement
 
