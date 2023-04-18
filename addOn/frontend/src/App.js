@@ -9,9 +9,11 @@ import authProvider from './config/authProvider';
 import dataProvider from './config/dataProvider';
 // import theme from './config/theme';
 import customTheme from './customTheme';
-import * as resources from './resources';
-
+import * as rawResources from './resources';
+import { customizeResources } from './customResources';
 import Layout from './layout/Layout';
+
+const resources = customizeResources(rawResources);
 
 const history = createHistory();
 
