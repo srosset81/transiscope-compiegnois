@@ -1,0 +1,18 @@
+version: '3.5'
+
+### DOCKER COMPOSE LOCAL (extends BASE) ###
+#
+# Here, we define all the stuff needed in addition to the base compose configuration to make the app work locally.
+# This includes also the creation of a local db service.
+#
+
+services:
+  middleware:
+    build:
+      dockerfile: ./Dockerfile.middleware
+    image: transiscope-nantes/middleware
+
+  frontend:
+    build:
+      dockerfile: ./Dockerfile.frontend
+    image: transiscope-nantes/frontend

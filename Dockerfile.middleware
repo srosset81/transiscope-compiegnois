@@ -1,0 +1,31 @@
+FROM node:14.21-alpine
+
+# Default arguments
+ARG SELECTED_BRANCH=master
+
+WORKDIR /archipelago
+
+RUN node -v
+RUN npm -v
+
+RUN apk add --update --no-cache autoconf bash libtool automake python3 py3-pip alpine-sdk openssh-keygen yarn nano cmake
+
+RUN yarn global add pm2 nodemon
+
+# Force cache invalidation if the master branch changed since last build
+# If we don't do that, Docker may skip the git clone command
+ADD https://api.github.com/repos/assemblee-virtuelle/archipelago/git/refs/heads/$SELECTED_BRANCH ../git-version.json
+
+RUN git clone https://github.com/assemblee-virtuelle/archipelago.git /archipelago
+
+RUN git checkout $SELECTED_BRANCH
+
+WORKDIR /archipelago/middleware
+
+COPY ./addOn/middleware/ .
+
+RUN yarn install
+
+EXPOSE 3000
+
+CMD [ "pm2-runtime", "ecosystem.config.js" ]
