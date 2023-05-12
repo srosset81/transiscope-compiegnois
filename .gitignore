@@ -2,3 +2,6 @@
 /keycloak
 /middleware
 .vscode
+
+.env.local
+.env.prod

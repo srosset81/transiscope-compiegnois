@@ -1,0 +1,84 @@
+version: '3.5'
+
+### DOCKER COMPOSE BASE ###
+#
+# Here, we define the base services of the app, all the common stuff for everything.
+# This compose configuration doesn't work alone and needs to be added to some other compose configurations.
+#
+
+networks:
+  semapps:
+    name: semapps_network
+
+services:
+  # Database
+  fuseki:
+    image: semapps/jena-fuseki-webacl
+    container_name: transiscope-nantes-fuseki
+    volumes:
+      - './data/fuseki:/fuseki'
+      - './data/staging:/staging'
+    ports:
+      - '3030:3030'
+    networks:
+      - semapps
+    environment:
+      ADMIN_PASSWORD: ${FUSEKI_PASSWORD}
+
+  # Task compacting the database (should be done regularly)
+  fuseki_compact:
+    image: semapps/jena-fuseki-webacl:latest
+    entrypoint: /docker-compact-entrypoint.sh
+    profiles:
+      - compact
+    volumes:
+      - ./data/fuseki:/fuseki
+
+  # Back-end middleware
+  middleware:
+    container_name: transiscope-nantes-middleware
+    depends_on:
+      - fuseki
+      - redis
+    volumes:
+      - './middleware/logs:/archipelago/middleware/logs'
+      - './middleware/jwt:/archipelago/middleware/jwt'
+      - './middleware/uploads:/archipelago/middleware/uploads'
+    environment:
+      - SEMAPPS_SPARQL_ENDPOINT=${SEMAPPS_SPARQL_ENDPOINT}
+      - SEMAPPS_MAIN_DATASET=localData
+      - SEMAPPS_JENA_USER=admin
+      - SEMAPPS_JENA_PASSWORD=${FUSEKI_PASSWORD}
+      - SEMAPPS_HOME_URL=${SEMAPPS_HOME_URL}
+      - SEMAPPS_OIDC_ISSUER=${SEMAPPS_OIDC_ISSUER}
+      - SEMAPPS_OIDC_CLIENT_ID=${SEMAPPS_OIDC_CLIENT_ID}
+      - SEMAPPS_REDIS_URL=${SEMAPPS_REDIS_URL}
+      - SEMAPPS_FRONT_URL=${SEMAPPS_FRONT_URL}
+    networks:
+      - semapps
+    ports:
+      - '3000:3000'
+
+  # Front-end interface
+  frontend:
+    container_name: transiscope-nantes-frontend
+    environment:
+      - REACT_APP_MIDDLEWARE_URL=${MIDDLEWARE_URL}
+      - REACT_APP_MAPBOX_ACCESS_TOKEN=${MAPBOX_TOKEN}
+      - PORT=4000
+    networks:
+      - semapps
+    ports:
+      - '4000:4000'
+
+  # Cache database (optional)
+  redis:
+    container_name: transiscope-nantes-redis
+    image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - './data/redis_data:/data'
+    networks:
+      - semapps
+    command: ["redis-server", "--appendonly", "yes"]

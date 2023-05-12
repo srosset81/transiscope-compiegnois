@@ -1,0 +1,17 @@
+version: '3.5'
+
+### DOCKER COMPOSE DEV (extends LOCAL > extends BASE) ###
+#
+# Here, we change the CMD directive to make it work in development mode with hot-reload.
+#
+
+services:
+  middleware:
+    volumes:
+      - ./addOn/middleware:/archipelago/middleware/addOn
+    command: bash -c "pm2-runtime 'yarn run dev' & nodemon --watch ./addOn -x \"cp -r ./addOn/* .\""
+
+  frontend:
+    volumes:
+      - ./addOn/frontend:/archipelago/frontend/addOn
+    command: bash -c "yarn start & nodemon --watch ./addOn -x \"cp -r ./addOn/* .\""

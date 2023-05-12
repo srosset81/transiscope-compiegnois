@@ -1,46 +1,75 @@
-# customisation de Archipelago pour Transiscope en pays nantais
+# Transiscope en Pays Nantais
 
-pour accéder à l'outil et decovrire le projet : https://nantes.transiscope.org/
+Pour accéder à l'outil et decovrir le projet : https://nantes.transiscope.org/
 
-## lancer le logiciel localement
+Cet outil est basé sur Archipelago (https://github.com/assemblee-virtuelle/archipelago)
+
+## Lancer le logiciel localement
+
+Copier le fichier `.env.local.example` et le renommer en `.env.local`
+Vous aurez notamment à y mettre un token valide de Mapbox pour que les cartes puissent fonctionner correctement.
+
+Lancer le projet avec
 
 ```
+make build
 make start-local
 ```
-To stop it : ``` make stop-local ```
-Frontend on http://localhost:4000/
-Middleware on http://localhost:3000/
-Fuseki database on http://localhost:3030 (user: admin, password : admin)
-keycloak on http://localhost:8080 (Keycloak is a custom OIDC)
-You will get an error when creating some organisation :
+
+Stopper le projet avec
 ```
-index.js:209 Error: @semapps/geo-components : No access token in mapbox configuration
+make stop
 ```
-This is because MapBox Access Token is not define in the docker-compose file. This is not really a problem for local testing.
 
-## Customisation
+Les services suivants seront alors démarrés :
+- Frontend on http://localhost:4000/
+- Middleware on http://localhost:3000/
+- Fuseki database on http://localhost:3030 (user: admin, password : admin)
 
-#### Custom frontend
+## Lancer le projet pour développer
 
-If you want minor frontend change you can follow this step. Exemples : App Title, App Bar Color, Tab title and favicon.
+Utiliser `make start-dev` à la place de `make start-local`.
 
-Use the addOn directory in the repo to replace logo192/512.png, App.js, index.html and favicon.ico.
+Il est possible de démarrer et de stopper les services un à un avec les commandes suivantes :
+- make start-frontend / make start-frontend-dev / make stop-frontend
+- make start-middleware / make start-middleware-dev / make stop-middleware
+- make start-db / make stop-db
 
-logo192.png : App Bar Logo, change it by your own logo (same name).
+## Publier une nouvelle version
 
-logo512.png : Ressource Logo, change it by your own (same name).
+Pour publier une nouvelle version, il faut utiliser les commandes suivantes :
 
-App.js : App Bar title, replace "MyArchipelago" line 23.
+```
+make publish-frontend
+make publish-middleware
+```
 
-index.html : tab bar title, replace "MyArchipelago" line 18.
+Une version vous sera demandée lors de la publication. Merci de respecter le format semver (https://semver.org/).
 
-favicon.ico : tab bar icon, replace the file by your own (same name).
+## Déployer l'outil en production
 
-You can change the theme by owervriting customTheme.js, if you just need to change the App Bar color, replace css color "#28ccfb" line 8 by your selected color.
+Copier le fichier `.env.prod.example` et le renommer en `.env.prod`
 
-You can easily change other file and custom your archipelago from this directory. But if you begin to change everithing, maybe you need a custom deploye. More optimised.
+Remplacer les variables FRONTEND_VERSION et MIDDLEWARE_VERSION par les versions voulues (par défaut, la dernière image publiée sera prise en compte si la valeur est vide)
 
-#### Custom middleware
+Remplacer le mot de passe de la base de données.
 
-Of course you can also change middleware files by adding them into the addOn/middlewaredirectory. Same advise as frontend, rememeber that if you need more than simple changes, you probably need a custom archipelago.
+Lancer la commande suivante :
+```
+make start-prod
+```
 
+Il est nécessaire de mettre en place une tâche régulière de compactage de la base de données, pour cela il faut exécuter la commandes suivantes :
+
+```
+make set-compact-cron
+```
+
+Il est aussi possible de le faire manuellement avec `make compact-prod`.
+
+## Mettre à jour l'outil en production
+
+Modifier le fichier .env.prod avec les nouveaux numéros de version, puis lancer la commande suivante
+```
+make update-prod
+```
