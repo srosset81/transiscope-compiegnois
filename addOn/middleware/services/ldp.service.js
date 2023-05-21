@@ -22,7 +22,17 @@ module.exports = {
   },
   hooksResource: {
         after: {
-            "get":async (ctx, res)=>{
+            "get": async (ctx, res) => {
+              // This customization filters personal data from Person resources to not expose them
+              // Issue related #76
+              // foaf:name is not filtered because it is used to display logged user name in the app bar
+              if (Array.isArray(res.type) && res.type.includes('Person')) {
+                delete res['pair:e-mail'];
+                delete res['foaf:email'];
+                delete res['foaf:familyName'];
+                delete res['foaf:nick'];
+              }
+
               for ( let container of containers){
                 if (ctx.params.resourceUri.includes(container.path) && container.ldpDereferencePlan){
                   let ldpNavigator=new LDPNavigator();
