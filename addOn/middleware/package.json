@@ -26,6 +26,7 @@
     "moleculer-web": "^0.10.0-beta1",
     "url-join": "^4.0.1",
     "fix-esm" : "^1.0.1",
-    "ldp-navigator" :"^1.2.10"
+    "ldp-navigator" :"^1.2.10",
+    "uuid": "^9.0.0"
   }
 }
