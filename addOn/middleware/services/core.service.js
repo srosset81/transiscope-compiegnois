@@ -26,6 +26,7 @@ module.exports = {
     },
     webacl: {
       superAdmins: []
-    }
+    },
+    sparqlEndpoint: false,
   }
 };
