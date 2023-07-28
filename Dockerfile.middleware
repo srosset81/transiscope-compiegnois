@@ -1,7 +1,7 @@
-FROM node:14.21-alpine
+FROM node:18-alpine
 
 # Default arguments
-ARG SELECTED_BRANCH=master
+ARG SELECTED_BRANCH=v1.0.1
 
 WORKDIR /archipelago
 
@@ -12,13 +12,7 @@ RUN apk add --update --no-cache autoconf bash libtool automake python3 py3-pip a
 
 RUN yarn global add pm2 nodemon
 
-# Force cache invalidation if the master branch changed since last build
-# If we don't do that, Docker may skip the git clone command
-ADD https://api.github.com/repos/assemblee-virtuelle/archipelago/git/refs/heads/$SELECTED_BRANCH ../git-version.json
-
-RUN git clone https://github.com/assemblee-virtuelle/archipelago.git /archipelago
-
-RUN git checkout $SELECTED_BRANCH
+RUN git clone --branch=${SELECTED_BRANCH} https://github.com/assemblee-virtuelle/archipelago.git /archipelago
 
 WORKDIR /archipelago/middleware
 
