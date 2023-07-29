@@ -1,10 +1,8 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import theme from './config/theme';
-
 
 //Change this color to change AppBar color
 const primary = '#005259';
-
 
 let customTheme = createTheme({
   ...theme,
