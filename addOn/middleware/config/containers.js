@@ -67,7 +67,7 @@ module.exports = [
     path: '/events',
     preferredView: '/Event',
     acceptedTypes: ['pair:Event'],
-    dereference: ['pair:hasLocation/pair:hasPostalAddress'],
+    dereference: ['sec:publicKey','pair:hasLocation/pair:hasPostalAddress'],
     newResourcesPermissions: writePermissionsToCreator
   },
   {
