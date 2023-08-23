@@ -5,6 +5,7 @@ const CONFIG = require('../config/config');
 const containers = require('../config/containers');
 const {LDPNavigator,FetchAdapter} = require('fix-esm').require('ldp-navigator');
 const { defaultContext } = require('@semapps/core');
+const jsonld = require('jsonld');
 
 module.exports = {
   mixins: [LdpService, DocumentTaggerMixin],
@@ -51,10 +52,9 @@ module.exports = {
                   //context have to be replce because jsonld librairy don't support url with localhost
                   res['@context']=defaultContext['@context'];
                   await ldpNavigator.init(res);
-                  // console.log("res",res);
-                  // if (res['pair:organizationOfMembership']){
-                      res= await ldpNavigator.dereference(res,container.ldpDereferencePlan);
-                  // }
+                  res= await ldpNavigator.dereference(res,container.ldpDereferencePlan);
+                  //frame have to be because ldp-navigator return '@id' instead 'id' in dereferenced data
+                  res = await jsonld.frame(res,{'@context':res['@context'],'id':ctx.params.resourceUri});
                   res['@context']=oldContext;
                 }
               }

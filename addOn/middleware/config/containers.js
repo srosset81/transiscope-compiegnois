@@ -35,7 +35,7 @@ module.exports = [
     path: '/organizations',
     acceptedTypes: ['pair:Organization'],
     preferredView: '/Organization',
-    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress', 'pair:organizationOfMembership'],
+    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress'],
     disassembly: [{ path: 'pair:organizationOfMembership', container: CONFIG.HOME_URL + 'membership-associations' }],
     newResourcesPermissions: writePermissionsToCreator,
     ldpDereferencePlan :[
@@ -67,6 +67,7 @@ module.exports = [
     path: '/events',
     preferredView: '/Event',
     acceptedTypes: ['pair:Event'],
+    dereference: ['pair:hasLocation/pair:hasPostalAddress'],
     newResourcesPermissions: writePermissionsToCreator
   },
   {

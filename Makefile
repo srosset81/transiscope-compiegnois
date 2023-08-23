@@ -66,7 +66,7 @@ start-local:
 	$(LOCAL) up -d
 
 start-dev:
-	$(DEV) up -d
+	$(DEV) up -d --force-recreate
 
 start-prod:
 	$(PROD) up -d
