@@ -7,6 +7,7 @@ import {
   AutocompleteInput,
   ArrayInput,
   SimpleFormIterator,
+  BooleanInput,
 } from 'react-admin';
 import makeStyles from '@mui/styles/makeStyles';
 import { ReferenceInput, ImageInput } from '@semapps/input-components';
@@ -50,6 +51,9 @@ export const OrganizationEdit = props => (
         <ReferenceInput reference="Type" source="pair:hasType" filter={{ a: 'pair:OrganizationType' }}>
           <SelectInput optionText="pair:label" />
         </ReferenceInput>
+        <BooleanInput source="charterCompliance" label={
+          <div>Cette organisation adhère aux valeurs de la <a href="https://transiscope.org/charte/">charte Transiscope</a></div>
+        } option={{ defaultChecked: true }} />
         <MultiLinesInput source="pair:homePage" fullWidth />
         <TextInput source="pair:e-mail" fullWidth type="email" />
         <LocationInput source="pair:hasLocation" fullWidth />
