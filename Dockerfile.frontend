@@ -1,7 +1,7 @@
 FROM node:16-alpine
 
 # Default arguments
-ARG SELECTED_BRANCH=master
+ARG SELECTED_BRANCH=v1.1.0
 
 WORKDIR /archipelago
 
