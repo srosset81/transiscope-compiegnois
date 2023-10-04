@@ -1,31 +1,11 @@
 import React from 'react';
-import { FormTab, TextInput, TabbedForm, ImageField} from 'react-admin';
-import { MarkdownInput } from '@semapps/markdown-components';
-import { ImageInput } from '@semapps/input-components';
-import { ActorsInput, ThemesInput, DateTimeInput, LocationInput } from '../../../../common/input';
 import Edit from "../../../../layout/edit/Edit";
 import Title from "../../../../layout/Title";
+import EventForm from './EventForm';
 
 const EventEdit = props => (
   <Edit title={<Title />} redirect="show" {...props}>
-    <TabbedForm>
-      <FormTab label="Données">
-        <TextInput source="pair:label" fullWidth />
-        <TextInput source="pair:comment" fullWidth />
-        <MarkdownInput source="pair:description" fullWidth />
-        <TextInput source="pair:aboutPage" fullWidth />
-        <LocationInput source="pair:hasLocation" fullWidth />
-        <DateTimeInput source="pair:startDate" />
-        <DateTimeInput source="pair:endDate" />
-        <ImageInput source="image" accept="image/*">
-          <ImageField source="src" />
-        </ImageInput>
-      </FormTab>
-      <FormTab label="Relations">
-        <ActorsInput source="pair:involves" />
-        <ThemesInput source="pair:hasTopic" />
-      </FormTab>
-    </TabbedForm>
+    <EventForm />
   </Edit>
 );
 
