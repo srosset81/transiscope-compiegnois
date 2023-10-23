@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, SimpleList, EmailField, ArrayField, useGetList, useRecordContext } from "react-admin";
-import { Grid, Avatar, Box } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { MapField } from "@semapps/geo-components";
 import { FilterHandler } from "@semapps/semantic-data-provider";
 import {
@@ -14,9 +14,6 @@ import {
 import { ChipList, GridList } from "@semapps/list-components";
 import DescriptionIcon from "@mui/icons-material/Description";
 import HomeIcon from "@mui/icons-material/Home";
-import ForumIcon from "@mui/icons-material/Forum";
-import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
-import Title from "../../../../layout/Title";
 import { MarkdownField } from "../../../../common/field";
 import { Hero, MainList, SideList } from "../../../../common/list";
 import Show from "../../../../layout/show/Show";
@@ -38,27 +35,6 @@ const ConditionalSourceDefinedHandler = ({
   } else {
     return <></>;
   }
-};
-
-const domainMapping = {
-  "forums.assemblee-virtuelle.org": {
-    label: "Forum",
-    icon: <ForumIcon />,
-    color: "#28ccfb",
-    contrastText: "white",
-  },
-  "peertube.virtual-assembly.org": {
-    label: "Peertube",
-    icon: <VideocamOutlinedIcon />,
-    color: "white",
-    contrastText: "#f2690d",
-  },
-  "chat.lescommuns.org": {
-    label: "Chat",
-    icon: <Avatar src="/lescommuns.jpg" />,
-    color: "white",
-    contrastText: "black",
-  },
 };
 
 const GroupedReferenceHandler = ({
@@ -93,14 +69,13 @@ const GroupedReferenceHandler = ({
 
 const OrganizationShow = (props) => {
   return (
-    <Show title={<Title />} {...props}>
+    <Show {...props}>
       <Grid container spacing={5}>
         <Grid item xs={12} sm={9}>
           <Hero image="image">
             <TextField source="pair:comment" />
             <MultiUrlField
               source="pair:homePage"
-              domainMapping={domainMapping}
             />
             <EmailField source="pair:e-mail" />
             <ReferenceArrayField reference="Status" source="pair:hasStatus">
