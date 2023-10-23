@@ -5,41 +5,17 @@ import {
   TabbedForm,
   ImageField,
   AutocompleteInput,
-  ArrayInput,
-  SimpleFormIterator,
   BooleanInput,
 } from 'react-admin';
-import makeStyles from '@mui/styles/makeStyles';
 import { ReferenceInput, ImageInput } from '@semapps/input-components';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { MultiLinesInput } from '@semapps/input-components';
-// import { ReificationArrayInput } from "@semapps/semantic-data-provider";
 import { OrganizationsInput, EventsInput, ThemesInput, DocumentsInput, LocationInput } from '../../../../common/input';
-import Title from "../../../../layout/Title";
 import Edit from "../../../../layout/edit/Edit";
-
-const useHideInputStyles = makeStyles({
-  root: {
-    display: 'none'
-  }
-});
-
-const ReificationArrayInput = props => {
-  const { reificationClass, children, ...otherProps } = props;
-  const hideInputStyles = useHideInputStyles();
-
-  return (
-    <ArrayInput {...otherProps}>
-      <SimpleFormIterator inline>
-        {props.children}
-        <TextInput className={hideInputStyles.root} source="type" defaultValue={reificationClass} />
-      </SimpleFormIterator>
-    </ArrayInput>
-  );
-};
+import ReificationArrayInput from '../../../../common/input/ReificationArrayInput';
 
 export const OrganizationEdit = props => (
-  <Edit title={<Title />} redirect="show" {...props}>
+  <Edit redirect="show" {...props}>
     <TabbedForm>
       <TabbedForm.Tab label="Données">
         <TextInput source="pair:label" fullWidth />

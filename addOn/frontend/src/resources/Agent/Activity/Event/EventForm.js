@@ -4,9 +4,8 @@ import {
   required,
   ImageField,
   minValue,
-  SimpleForm,
 } from "react-admin";
-import MarkdownInput from '../../../../common/input/MarkdownInput';
+import { MarkdownInput } from '@semapps/markdown-components';
 import { ImageInput } from "@semapps/input-components";
 import {
   ActorsInput,
@@ -35,7 +34,7 @@ const EndDateInput = () => {
 
 const EventForm = () => {
   return (
-    <SimpleForm spacing={2} useFlexGap >
+    <>
       <LargeLabel>Informations de base</LargeLabel>
       <TextInput source="pair:label" fullWidth validate={[required()]} />
       <Stack direction="row" useFlexGap spacing={2}>
@@ -87,7 +86,7 @@ const EventForm = () => {
       <ImageInput source="image" accept="image/*">
         <ImageField source="src" />
       </ImageInput>
-    </SimpleForm>
+    </>
   );
 };
 

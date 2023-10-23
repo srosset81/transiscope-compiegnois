@@ -35,14 +35,7 @@ module.exports = [
     path: '/organizations',
     acceptedTypes: ['pair:Organization'],
     preferredView: '/Organization',
-    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress'],
-    disassembly: [{ path: 'pair:organizationOfMembership', container: CONFIG.HOME_URL + 'membership-associations' }],
-    newResourcesPermissions: writePermissionsToCreator,
-    ldpDereferencePlan :[
-      {
-        p:'pair:organizationOfMembership'
-      }
-    ]
+    newResourcesPermissions: writePermissionsToCreator
   },
   {
     path: '/membership-associations',
@@ -53,21 +46,18 @@ module.exports = [
     path: '/groups',
     preferredView: '/Group',
     acceptedTypes: ['pair:Group', 'og:Circle'],
-    dereference: ['sec:publicKey'],
     newResourcesPermissions: writePermissionsToCreator
   },
   {
     path: '/projects',
     preferredView: '/Project',
     acceptedTypes: ['pair:Project', 'og:Circle'],
-    dereference: ['sec:publicKey'],
     newResourcesPermissions: writePermissionsToCreator
   },
   {
     path: '/events',
     preferredView: '/Event',
     acceptedTypes: ['pair:Event'],
-    dereference: ['sec:publicKey','pair:hasLocation/pair:hasPostalAddress'],
     newResourcesPermissions: writePermissionsToCreator
   },
   {
@@ -80,17 +70,10 @@ module.exports = [
     path: '/users',
     preferredView: '/Person',
     acceptedTypes: ['pair:Person'],
-    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress'],
-    ldpDereferencePlan :[
-      {
-        p:'pair:actorOfMembership'
-      }
-    ]
   },
   {
     path: '/bots',
     acceptedTypes: [ACTOR_TYPES.APPLICATION],
-    dereference: ['sec:publicKey'],
     excludeFromMirror: true,
   },
   {
