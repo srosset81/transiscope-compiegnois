@@ -3,7 +3,6 @@ import { Admin, Resource, memoryStore } from 'react-admin';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { LoginPage } from '@semapps/auth-provider';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient } from 'react-query';
 
 import HomePage from './HomePage';
 import i18nProvider from './config/i18nProvider';

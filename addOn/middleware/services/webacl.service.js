@@ -1,7 +1,5 @@
 const { WebAclService } = require('@semapps/webacl');
 
-console.log('____________________________________baseUrl',process.env.SEMAPPS_HOME_URL)
-
 module.exports = {
   mixins: [WebAclService],
   settings: {

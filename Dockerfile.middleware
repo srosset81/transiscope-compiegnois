@@ -2,6 +2,7 @@ FROM node:18-alpine
 
 # Default arguments
 ARG SELECTED_BRANCH=next
+ARG SELECTED_COMMIT=29d5dcd4febe26e0c90ffb251726dbab6842fab4
 
 WORKDIR /archipelago
 
@@ -13,6 +14,7 @@ RUN apk add --update --no-cache autoconf bash libtool automake python3 py3-pip a
 RUN yarn global add pm2 nodemon
 
 RUN git clone --branch=${SELECTED_BRANCH} https://github.com/assemblee-virtuelle/archipelago.git /archipelago
+RUN git reset --hard ${SELECTED_COMMIT}
 
 WORKDIR /archipelago/middleware
 
