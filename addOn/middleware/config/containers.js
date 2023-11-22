@@ -32,12 +32,6 @@ module.exports = [
     path: '/'
   },
   {
-    path: '/organizations',
-    acceptedTypes: ['pair:Organization'],
-    preferredView: '/Organization',
-    newResourcesPermissions: writePermissionsToCreator
-  },
-  {
     path: '/membership-associations',
     acceptedTypes: ['pair:MembershipAssociation'],
     newResourcesPermissions: writePermissionsToCreator
@@ -65,11 +59,6 @@ module.exports = [
     preferredView: '/Task',
     acceptedTypes: ['pair:Task'],
     newResourcesPermissions: writePermissionsToCreator
-  },
-  {
-    path: '/users',
-    preferredView: '/Person',
-    acceptedTypes: ['pair:Person'],
   },
   {
     path: '/bots',
