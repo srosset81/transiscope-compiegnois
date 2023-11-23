@@ -7,3 +7,5 @@
 .env.prod
 
 .DS_STORE
+
+/dev
