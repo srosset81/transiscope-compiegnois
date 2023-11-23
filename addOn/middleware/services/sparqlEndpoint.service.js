@@ -10,7 +10,7 @@ module.exports = {
         // Issue related #76
         if (Array.isArray(res['@graph'])) {
           res['@graph'].forEach((singleRes, index) => {
-            if (Array.isArray(singleRes['@type']) && singleRes['@type'].includes('pair:Person')) {
+            if (Array.isArray(singleRes['@type']) && singleRes['@type'].includes('http://virtual-assembly.org/ontologies/pair#Person')) {
               delete res['@graph'][index]['e-mail'];
               delete res['@graph'][index]['email'];
               delete res['@graph'][index]['familyName'];
