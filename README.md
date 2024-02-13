@@ -1,6 +1,6 @@
 # Transiscope en Pays Nantais
 
-Pour accéder à l'outil et decovrir le projet : https://nantes.transiscope.org/
+Pour accéder à l'outil et découvrir le projet : https://nantes.transiscope.org/
 
 Cet outil est basé sur Archipelago (https://github.com/assemblee-virtuelle/archipelago)
 
