@@ -1,8 +1,10 @@
 FROM node:16-alpine
 
-# Default arguments
-ARG SELECTED_BRANCH=next
-ARG SELECTED_COMMIT=29d5dcd4febe26e0c90ffb251726dbab6842fab4
+# Can be a branch name or a tag
+ARG SELECTED_BRANCH=v1.2.0
+
+# Leave empty if based on a tag or latest commit of the branch
+ARG SELECTED_COMMIT=
 
 WORKDIR /archipelago
 
@@ -14,7 +16,7 @@ RUN apk add --update --no-cache bash alpine-sdk openssh-keygen nano
 RUN yarn global add serve nodemon
 
 RUN git clone --branch=${SELECTED_BRANCH} https://github.com/assemblee-virtuelle/archipelago.git /archipelago
-RUN git reset --hard ${SELECTED_COMMIT}
+RUN if [[ -n "$SELECTED_COMMIT" ]]; then git reset --hard ${SELECTED_COMMIT}; fi
 
 WORKDIR /archipelago/frontend
 
