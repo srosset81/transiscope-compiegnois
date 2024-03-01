@@ -15,7 +15,7 @@ stop-db:
 
 ## Middleware
 build-middleware:
-	$(LOCAL) build --no-cache middleware
+	$(LOCAL) build middleware
 
 start-middleware:
 	$(LOCAL) up -d --force-recreate middleware
@@ -39,7 +39,7 @@ publish-middleware:
 
 ## Frontend
 build-frontend:
-	$(LOCAL) build --no-cache frontend
+	$(LOCAL) build frontend
 
 start-frontend:
 	$(LOCAL) up -d --force-recreate frontend
