@@ -1,31 +1,5 @@
-const CONFIG = require('./config');
 const { ACTOR_TYPES } = require("@semapps/activitypub");
-
-const writePermissionsToCreator = creatorUri => {
-  console.log('---------------------------- writePermissionsToCreator',CONFIG.HOME_URL+'_groups/superadmins');
-  return {
-    anon : {
-      read: true
-    },
-    anyUser: {
-      read: true,
-      write: true,
-    },
-    user: {
-      uri: creatorUri,
-      read: true,
-      write: true,
-      control : true
-    },
-    group: {
-      uri : CONFIG.HOME_URL+'_groups/superadmins',
-      read: true,
-      write: true,
-      control : true
-    }
-  }
-};
-
+const { getDefaultRights } = require('./defaultRights');
 
 module.exports = [
   {
@@ -34,31 +8,31 @@ module.exports = [
   {
     path: '/membership-associations',
     acceptedTypes: ['pair:MembershipAssociation'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/groups',
     preferredView: '/Group',
     acceptedTypes: ['pair:Group', 'og:Circle'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/projects',
     preferredView: '/Project',
     acceptedTypes: ['pair:Project', 'og:Circle'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/events',
     preferredView: '/Event',
     acceptedTypes: ['pair:Event'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/tasks',
     preferredView: '/Task',
     acceptedTypes: ['pair:Task'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/bots',
@@ -69,31 +43,31 @@ module.exports = [
     path: '/ideas',
     preferredView: '/Idea',
     acceptedTypes: ['pair:Idea'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/themes',
     preferredView: '/Theme',
     acceptedTypes: ['pair:Theme'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/skills',
     preferredView: '/Skill',
     acceptedTypes: ['pair:Skill'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/membership-roles',
     preferredView: '/MembershipRole',
     acceptedTypes: ['pair:MembershipRole'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/documents',
     preferredView: '/Document',
     acceptedTypes: ['pair:Document'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/status',
@@ -108,7 +82,7 @@ module.exports = [
       'pair:ProjectStatus',
       'pair:TaskStatus'
     ],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/types',
@@ -131,16 +105,16 @@ module.exports = [
       'pair:SubjectType',
       'pair:TaskType'
     ],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/pages',
     preferredView: '/Page',
     acceptedTypes: ['semapps:Page'],
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   },
   {
     path: '/files',
-    newResourcesPermissions: writePermissionsToCreator
+    newResourcesPermissions: getDefaultRights
   }
 ];

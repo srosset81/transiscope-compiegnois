@@ -54,6 +54,7 @@ services:
       - SEMAPPS_OIDC_CLIENT_ID=${SEMAPPS_OIDC_CLIENT_ID}
       - SEMAPPS_REDIS_CACHE_URL=${SEMAPPS_REDIS_CACHE_URL}
       - SEMAPPS_FRONT_URL=${SEMAPPS_FRONT_URL}
+      - SUPER_ADMINS=${SUPER_ADMINS}
     networks:
       - semapps
     ports:
