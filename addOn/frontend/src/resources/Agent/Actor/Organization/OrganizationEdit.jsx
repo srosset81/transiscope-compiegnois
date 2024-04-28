@@ -16,7 +16,7 @@ import ReificationArrayInput from '../../../../common/input/ReificationArrayInpu
 
 export const OrganizationEdit = props => (
   <Edit redirect="show" {...props}>
-    <TabbedForm>
+    <TabbedForm syncWithLocation={false}>
       <TabbedForm.Tab label="Données">
         <TextInput source="pair:label" fullWidth />
         <TextInput source="pair:comment" fullWidth />

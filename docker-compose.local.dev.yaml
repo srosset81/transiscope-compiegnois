@@ -14,4 +14,6 @@ services:
   frontend:
     volumes:
       - ./addOn/frontend:/archipelago/frontend/addOn
-    command: bash -c "yarn start & nodemon --watch ./addOn -x \"cp -r ./addOn/* .\""
+    command: bash -c "yarn dev --host & nodemon --watch ./addOn --ext js,jsx,ts,tsx,html -x \"cp -r ./addOn/* .\""
+    ports:
+      - '5173:5173'
