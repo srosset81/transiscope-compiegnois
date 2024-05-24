@@ -5,7 +5,7 @@ function init () {
 }
 
 function update () {
-  source .env.local
+  . .env.local
 
   if [ -z $ARCHIPELAGO_VERSION ]
   then
@@ -23,8 +23,8 @@ function update () {
 
   cd ..
   cp -R addOn/* dev
-  cp .env.local dev/frontend
-  cp .env.local dev/middleware
+  sed 's/fuseki/localhost/g' < .env.local > dev/frontend/.env.local
+  sed 's/fuseki/localhost/g' < .env.local > dev/middleware/.env.local
 
   (cd dev/frontend && yarn)
   (cd dev/middleware && yarn)
@@ -46,4 +46,5 @@ function sync () {
       esac
     done
   )
+  cd ..
 }

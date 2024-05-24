@@ -1,4 +1,3 @@
-const { ACTOR_TYPES } = require("@semapps/activitypub");
 const { getDefaultRights } = require('./defaultRights');
 
 module.exports = [
@@ -36,7 +35,7 @@ module.exports = [
   },
   {
     path: '/bots',
-    acceptedTypes: [ACTOR_TYPES.APPLICATION],
+    acceptedTypes: ['as:Application'],
     excludeFromMirror: true,
   },
   {

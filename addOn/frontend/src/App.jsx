@@ -3,18 +3,24 @@ import { Admin, Resource, memoryStore } from 'react-admin';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { LoginPage } from '@semapps/auth-provider';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient } from 'react-query';
 
 import HomePage from './HomePage';
 import i18nProvider from './config/i18nProvider';
 import authProvider from './config/authProvider';
 import dataProvider from './config/dataProvider';
 import customTheme from './customTheme';
-import * as rawResources from './resources';
-import { customizeResources } from './customResources';
+import resources from './customResources';
 
 import Layout from './layout/Layout';
 
-const resources = customizeResources(rawResources);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    },
+  },
+});
 
 const App = () => (
   <StyledEngineProvider injectFirst>
@@ -31,6 +37,7 @@ const App = () => (
           loginPage={LoginPage}
           dashboard={HomePage}
           store={memoryStore()}
+          queryClient={queryClient}
         >
           {Object.entries(resources).map(([key, resource]) => (
             <Resource key={key} name={key} {...resource.config} />

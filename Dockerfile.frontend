@@ -1,7 +1,7 @@
-FROM node:16-alpine
+FROM node:20-alpine
 
 # Can be a branch name or a tag
-ARG SELECTED_BRANCH=v1.2.0
+ARG SELECTED_BRANCH=v2.0.0
 
 # Leave empty if based on a tag or latest commit of the branch
 ARG SELECTED_COMMIT=
@@ -22,7 +22,7 @@ WORKDIR /archipelago/frontend
 
 ADD ./addOn/frontend/ .
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # yarn build is necessary here to rebuild with correct environment variables
-CMD yarn build && serve -s build -l 4000
+CMD yarn build && serve -s dist -l 4000

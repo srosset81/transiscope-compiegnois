@@ -98,13 +98,13 @@ prune-data:
 ## Development
 
 dev-init:
-	source dev.sh && init
+	. dev.sh && init
 
 dev-update:
-	source dev.sh && update
+	. dev.sh && update
 
 dev-sync:
-	source dev.sh && sync
+	. dev.sh && sync
 
 dev-start-db:
 	cd dev && docker-compose up -d fuseki
@@ -113,7 +113,7 @@ dev-stop-db:
 	cd dev && docker-compose stop
 
 dev-start-frontend:
-	cd dev/frontend && yarn start
+	cd dev/frontend && yarn dev
 
 dev-start-middleware:
 	cd dev/middleware && yarn dev

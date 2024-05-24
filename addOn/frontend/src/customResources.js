@@ -1,23 +1,23 @@
-export function customizeResources(rawResources) {
-  const customizedResources = {...rawResources};
+import rawResources from './resources';
 
-  // Remove Task and Idea resources
-  delete customizedResources['Group'];
-  delete customizedResources['Task'];
-  delete customizedResources['Idea'];
+const customizedResources = {...rawResources};
 
-  // Remove parent link to simplify TreeMenu
-  const noParentResources = ['Event', 'Project', 'Organization', 'Person', 'Skill'];
-  Object.keys(customizedResources).forEach(key => {
-    if (noParentResources.includes(key)) {
-      customizedResources[key].config.options.parent = undefined;
-    }
-  });
+// Remove unwanted resources
+delete customizedResources['Group'];
+delete customizedResources['Task'];
+delete customizedResources['Idea'];
 
-  // Change list fetching method to container
-  Object.keys(customizedResources).forEach(key => {
-    customizedResources[key].dataModel.list.fetchContainer = true;
-  });
+// Remove parent link to simplify TreeMenu
+const noParentResources = ['Event', 'Project', 'Organization', 'Person', 'Skill'];
+Object.keys(customizedResources).forEach(key => {
+  if (noParentResources.includes(key)) {
+    customizedResources[key].config.options.parent = undefined;
+  }
+});
 
-  return customizedResources;
-}
+// Change list fetching method to container
+Object.keys(customizedResources).forEach(key => {
+  customizedResources[key].dataModel.list.fetchContainer = true;
+});
+
+export default customizedResources;
