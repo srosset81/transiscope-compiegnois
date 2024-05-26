@@ -8,15 +8,12 @@ module.exports = {
   mixins: [LdpService, DocumentTaggerMixin],
   settings: {
     baseUrl: CONFIG.HOME_URL,
-    ontologies : defaultOntologies,
+    ontologies: defaultOntologies,
     containers,
     preferredViewForResource: async (resourceUri, containerPreferredView) => {
       if (!containerPreferredView) return resourceUri;
       return urlJoin(CONFIG.FRONT_URL, containerPreferredView, encodeURIComponent(resourceUri), 'show')
     },
-    defaultContainerOptions: {
-      jsonContext: urlJoin(CONFIG.HOME_URL, 'context.json')
-    }
   },
   hooksResource: {
     after: {
