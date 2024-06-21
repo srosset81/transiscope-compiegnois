@@ -8,11 +8,7 @@ ARG SELECTED_COMMIT=
 
 WORKDIR /archipelago
 
-RUN node -v
-RUN npm -v
-
 RUN apk add --update --no-cache bash alpine-sdk openssh-keygen nano
-
 RUN yarn global add serve nodemon
 
 RUN git clone --branch=${SELECTED_BRANCH} https://github.com/assemblee-virtuelle/archipelago.git /archipelago
@@ -20,9 +16,14 @@ RUN if [[ -n "$SELECTED_COMMIT" ]]; then git reset --hard ${SELECTED_COMMIT}; fi
 
 WORKDIR /archipelago/frontend
 
-ADD ./addOn/frontend/ .
-
 RUN yarn install --frozen-lockfile
 
-# yarn build is necessary here to rebuild with correct environment variables
-CMD yarn build && serve -s dist -l 4000
+COPY ./env.sh .
+COPY ./addOn/frontend/ .
+
+RUN yarn install --frozen-lockfile
+RUN yarn build
+
+EXPOSE 4000
+
+CMD sh -c "(. ./env.sh dist) && serve -s dist -l 4000"

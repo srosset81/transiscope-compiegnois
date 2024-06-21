@@ -5,7 +5,7 @@ function init () {
 }
 
 function update () {
-  . .env.local
+  . ./.env.local
 
   if [ -z $ARCHIPELAGO_VERSION ]
   then
