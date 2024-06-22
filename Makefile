@@ -41,6 +41,9 @@ publish-middleware:
 build-frontend:
 	$(LOCAL) build frontend
 
+build-frontend-dev:
+	$(DEV) build frontend
+
 start-frontend:
 	$(LOCAL) up -d --force-recreate frontend
 
@@ -73,6 +76,7 @@ start-prod:
 
 stop:
 	$(LOCAL) down
+	$(DEV) down
 
 build: build-frontend build-middleware
 

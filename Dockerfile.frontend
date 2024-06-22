@@ -1,4 +1,5 @@
-FROM node:20-alpine
+# Archipelago build
+FROM node:20-alpine AS build-archipelago
 
 # Can be a branch name or a tag
 ARG SELECTED_BRANCH=v2.0.0
@@ -9,7 +10,6 @@ ARG SELECTED_COMMIT=
 WORKDIR /archipelago
 
 RUN apk add --update --no-cache bash alpine-sdk openssh-keygen nano
-RUN yarn global add serve nodemon
 
 RUN git clone --branch=${SELECTED_BRANCH} https://github.com/assemblee-virtuelle/archipelago.git /archipelago
 RUN if [[ -n "$SELECTED_COMMIT" ]]; then git reset --hard ${SELECTED_COMMIT}; fi
@@ -18,11 +18,24 @@ WORKDIR /archipelago/frontend
 
 RUN yarn install --frozen-lockfile
 
-COPY ./env.sh .
+# App build
+FROM node:20-alpine AS build-app
+COPY --from=build-archipelago /archipelago/frontend /app
+WORKDIR /app
+
 COPY ./addOn/frontend/ .
 
 RUN yarn install --frozen-lockfile
 RUN yarn build
+
+# App serve
+FROM node:20-alpine AS serve
+COPY --from=build-app /app/dist /app/dist
+RUN yarn global add serve
+
+WORKDIR /app
+
+COPY ./env.sh .
 
 EXPOSE 4000
 
