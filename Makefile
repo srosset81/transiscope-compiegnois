@@ -41,6 +41,9 @@ publish-middleware:
 build-frontend:
 	$(LOCAL) build frontend
 
+build-frontend-dev:
+	$(DEV) build frontend
+
 start-frontend:
 	$(LOCAL) up -d --force-recreate frontend
 
@@ -73,6 +76,7 @@ start-prod:
 
 stop:
 	$(LOCAL) down
+	$(DEV) down
 
 build: build-frontend build-middleware
 
@@ -98,13 +102,13 @@ prune-data:
 ## Development
 
 dev-init:
-	. dev.sh && init
+	. ./dev.sh && init
 
 dev-update:
-	. dev.sh && update
+	. ./dev.sh && update
 
 dev-sync:
-	. dev.sh && sync
+	. ./dev.sh && sync
 
 dev-start-db:
 	cd dev && docker-compose up -d fuseki
@@ -113,6 +117,7 @@ dev-stop-db:
 	cd dev && docker-compose stop
 
 dev-start-frontend:
+	. ./.env.local && . ./env.sh dev/frontend/public
 	cd dev/frontend && yarn dev
 
 dev-start-middleware:
