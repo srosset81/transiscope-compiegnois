@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Card, CardActionArea, CardContent, Typography, CardMedia, Grid, Link } from "@mui/material";
+import { Card, CardActionArea, CardContent, Typography, CardMedia, Grid } from "@mui/material";
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-admin';
 
 const CardTitle = styled(Typography)(() => ({
   textAlign: 'center',
@@ -11,10 +12,10 @@ const CardTitle = styled(Typography)(() => ({
 
 const HomePage = () => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ marginY: 2 }}>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10">
+          <CardActionArea component={Link} to="/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10">
             <CardMedia
               component="img"
               height="200px"
@@ -32,7 +33,7 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="/Organization">
+          <CardActionArea component={Link} to="/Organization">
             <CardMedia
               component="img"
               sx={{ paddingTop: 2, maxHeight: "200px", maxWidth: "200px", margin: "auto" }}
@@ -49,7 +50,7 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="/Event">
+          <CardActionArea component={Link} to="/Event">
             <CardMedia
               component="img"
               sx={{ paddingTop: 2, maxHeight: "200px", maxWidth: "200px", margin: "auto" }}
@@ -66,7 +67,7 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="/Page/https%3A%2F%2Fdata.nantes.transiscope.org%2Fpages%2Fcest-quoi/show">
+          <CardActionArea component={Link} to="/Page/https%3A%2F%2Fdata.nantes.transiscope.org%2Fpages%2Fcest-quoi/show">
             <CardMedia
               component="img"
               sx={{ paddingTop: 2, maxHeight: "200px", maxWidth: "200px", margin: "auto" }}
@@ -83,7 +84,7 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="https://nantes.alternatiba.eu/transiscope-pays-nantais/">
+          <CardActionArea component={Link} to="https://nantes.alternatiba.eu/transiscope-pays-nantais/" target="_blank">
             <CardMedia
               component="img"
               sx={{ paddingTop: 2, maxHeight: "200px", maxWidth: "245px", margin: "auto" }}
@@ -100,7 +101,7 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Card>
-          <CardActionArea component={Link} href="https://transiscope.org/charte/">
+          <CardActionArea component={Link} to="https://transiscope.org/charte/" target="_blank">
             <CardMedia
               component="img"
               sx={{ paddingTop: 2, maxHeight: "200px", maxWidth: "200px", margin: "auto" }}
