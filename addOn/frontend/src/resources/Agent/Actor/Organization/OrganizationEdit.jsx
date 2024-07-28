@@ -5,10 +5,11 @@ import {
   TabbedForm,
   ImageField,
   BooleanInput,
+  SimpleFormIterator,
+  ArrayInput,
 } from 'react-admin';
 import { ReferenceInput, ImageInput } from '@semapps/input-components';
 import { MarkdownInput } from '@semapps/markdown-components';
-import { MultiLinesInput } from '@semapps/input-components';
 import { OrganizationsInput, EventsInput, DocumentsInput, LocationInput } from '../../../../common/input';
 import Edit from "../../../../layout/edit/Edit";
 import CustomTreeSelectArrayInput from '../../../../common/input/TreeComponent/CustomTreeSelectArrayInput';
@@ -30,7 +31,11 @@ export const OrganizationEdit = props => (
         <BooleanInput source="custom:charterCompliance" label={
           <div>Cette organisation adhère aux valeurs de la <a href="https://transiscope.org/charte/">charte Transiscope</a></div>
         } option={{ defaultChecked: true }} />
-        <MultiLinesInput source="pair:homePage" fullWidth />
+        <ArrayInput source="pair:homePage" fullWidth>
+          <SimpleFormIterator disableReordering disableClear fullWidth>
+            <TextInput fullWidth type="url" />
+          </SimpleFormIterator>
+        </ArrayInput>
         <TextInput source="pair:e-mail" fullWidth type="email" />
         <LocationInput source="pair:hasLocation" fullWidth />
         <ImageInput source="image" accept="image/*">
