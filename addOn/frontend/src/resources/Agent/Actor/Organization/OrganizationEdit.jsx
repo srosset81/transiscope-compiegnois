@@ -4,15 +4,15 @@ import {
   SelectInput,
   TabbedForm,
   ImageField,
-  AutocompleteInput,
   BooleanInput,
 } from 'react-admin';
 import { ReferenceInput, ImageInput } from '@semapps/input-components';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { MultiLinesInput } from '@semapps/input-components';
-import { OrganizationsInput, EventsInput, ThemesInput, DocumentsInput, LocationInput } from '../../../../common/input';
+import { OrganizationsInput, EventsInput, DocumentsInput, LocationInput } from '../../../../common/input';
 import Edit from "../../../../layout/edit/Edit";
-import ReificationArrayInput from '../../../../common/input/ReificationArrayInput';
+import CustomTreeSelectArrayInput from '../../../../common/input/TreeComponent/CustomTreeSelectArrayInput';
+import MembershipAssociationInput from '../../../../common/input/MembershipAssociationInput';
 
 export const OrganizationEdit = props => (
   <Edit redirect="show" {...props}>
@@ -38,30 +38,20 @@ export const OrganizationEdit = props => (
         </ImageInput>
       </TabbedForm.Tab>
       <TabbedForm.Tab label="Membres">
-        <ReificationArrayInput source="pair:organizationOfMembership" reificationClass="pair:MembershipAssociation">
-          <ReferenceInput reference="Person" source="pair:membershipActor">
-            <AutocompleteInput
-              optionText={record => record && `${record['pair:firstName']} ${record['pair:lastName']}`}
-              shouldRenderSuggestions={value => value && value.length > 1}
-              label="Membre"
-              size="small"
-              sx={{
-                mt: 1,
-                mb: '4px',
-                minWidth: 300,
-              }}
-            />
-          </ReferenceInput>
-          <ReferenceInput reference="MembershipRole" source="pair:membershipRole">
-            <SelectInput optionText="pair:label" label="Rôle" />
-          </ReferenceInput>
-        </ReificationArrayInput>
+        <MembershipAssociationInput
+          source="pair:organizationOfMembership"
+          referenceInputProps={{
+            reference: "Person",
+            source: "pair:membershipActor"
+          }}
+          label="Membre"
+        />
       </TabbedForm.Tab>
       <TabbedForm.Tab label="Relations">
         <OrganizationsInput source="pair:partnerOf" />
         <EventsInput source="pair:involvedIn" />
-        <ThemesInput source="pair:hasTopic" />
         <DocumentsInput source="pair:documentedBy" />
+        <CustomTreeSelectArrayInput source="pair:hasTopic" reference="Theme" label="A pour thème" broader="pair:broader" fullWidth />
       </TabbedForm.Tab>
     </TabbedForm>
   </Edit>

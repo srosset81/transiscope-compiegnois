@@ -33,5 +33,8 @@ module.exports = {
       superAdmins: []
     },
     sparqlEndpoint: false,
+    webid: {
+      path: 'users',
+    },
   }
 };
