@@ -17,7 +17,9 @@ Object.keys(customizedResources).forEach(key => {
 
 // Change list fetching method to container
 Object.keys(customizedResources).forEach(key => {
-  customizedResources[key].dataModel.list.fetchContainer = true;
+  if (customizedResources[key].dataModel?.list) {
+    customizedResources[key].dataModel.list.fetchContainer = true;
+  }
 });
 
 export default customizedResources;
