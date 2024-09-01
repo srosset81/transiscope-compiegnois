@@ -8,7 +8,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     <Box>
       <AppBar />
 
-      <Box sx={{ paddingX: { xs: 1, md: 2 }, marginTop: '64px' }}>
+      <Box sx={{ paddingX: { xs: 1, md: 2 }, marginTop: '80px' }}>
         {children}
       </Box>
 
