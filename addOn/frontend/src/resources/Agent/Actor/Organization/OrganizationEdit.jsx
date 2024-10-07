@@ -7,9 +7,11 @@ import {
   BooleanInput,
   SimpleFormIterator,
   ArrayInput,
+  ReferenceInput,
 } from 'react-admin';
-import { ReferenceInput, ImageInput } from '@semapps/input-components';
+import { ImageInput } from '@semapps/input-components';
 import { MarkdownInput } from '@semapps/markdown-components';
+import { EditToolbarWithPermissions } from '@semapps/auth-provider';
 import { OrganizationsInput, EventsInput, DocumentsInput, LocationInput } from '../../../../common/input';
 import Edit from "../../../../layout/edit/Edit";
 import CustomTreeSelectArrayInput from '../../../../common/input/TreeComponent/CustomTreeSelectArrayInput';
@@ -17,7 +19,7 @@ import MembershipAssociationInput from '../../../../common/input/MembershipAssoc
 
 export const OrganizationEdit = props => (
   <Edit redirect="show" {...props}>
-    <TabbedForm syncWithLocation={false}>
+    <TabbedForm syncWithLocation={false} toolbar={<EditToolbarWithPermissions />}>
       <TabbedForm.Tab label="Données">
         <TextInput source="pair:label" fullWidth />
         <TextInput source="pair:comment" fullWidth />
