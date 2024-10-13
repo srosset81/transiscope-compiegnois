@@ -12,7 +12,7 @@ import dataProvider from './config/dataProvider';
 import customTheme from './customTheme';
 import resources from './customResources';
 
-import Layout from './customLayout/Layout';
+import { Layout } from './layout';
 
 const queryClient = new QueryClient({
   defaultOptions: {

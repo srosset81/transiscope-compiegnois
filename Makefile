@@ -1,4 +1,4 @@
-BASE=docker-compose -f docker-compose.yaml
+BASE=docker compose -f docker-compose.yaml
 PROD=$(BASE) -f docker-compose.prod.yaml --env-file .env.prod
 LOCAL=$(BASE) -f docker-compose.local.yaml --env-file .env.local
 DEV=$(LOCAL) -f docker-compose.local.dev.yaml

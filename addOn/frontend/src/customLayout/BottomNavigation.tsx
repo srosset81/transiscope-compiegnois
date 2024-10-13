@@ -25,12 +25,19 @@ const BottomNavigation = () => {
 
   return (
     <Paper
-      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: { xs: 'block', md: 'none' }, zIndex: 1000 }}
-      elevation={3}
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        display: { xs: 'block', md: 'none' },
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+      }}
+      elevation={5}
     >
       <MuiBottomNavigation showLabels value={value}>
         <BottomNavigationAction label="Accueil" icon={<HomeIcon />} component={Link} to="/" />
-        <BottomNavigationAction label="Carte" icon={<MapIcon />} component={Link} to="/Organization?view=map" />
+        <BottomNavigationAction label="Carte" icon={<MapIcon />} component={Link} to="/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10" />
         <BottomNavigationAction label="Agenda" icon={<CalendarMonthIcon />} component={Link} to="/Event" />
       </MuiBottomNavigation>
     </Paper>
