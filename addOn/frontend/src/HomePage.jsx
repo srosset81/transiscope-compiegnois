@@ -10,11 +10,17 @@ const CardTitle = styled(Typography)(() => ({
   textTransform: 'uppercase'
 }));
 
+const HomeCard = styled(Card)(() => ({
+  borderStyle: 'solid',
+  borderColor: '#e0e0e0',
+  borderWidth: 1
+}));
+
 const HomePage = () => {
   return (
     <Grid container spacing={2} sx={{ marginY: 2 }}>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10">
             <CardMedia
               component="img"
@@ -29,10 +35,10 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="/Organization">
             <CardMedia
               component="img"
@@ -46,10 +52,10 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="/Event">
             <CardMedia
               component="img"
@@ -63,10 +69,10 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="/Page/https%3A%2F%2Fdata.nantes.transiscope.org%2Fpages%2Fcest-quoi/show">
             <CardMedia
               component="img"
@@ -80,10 +86,10 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="https://nantes.alternatiba.eu/transiscope-pays-nantais/" target="_blank">
             <CardMedia
               component="img"
@@ -97,10 +103,10 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <HomeCard elevation={0}>
           <CardActionArea component={Link} to="https://transiscope.org/charte/" target="_blank">
             <CardMedia
               component="img"
@@ -114,7 +120,7 @@ const HomePage = () => {
               </CardTitle>
             </CardContent>
           </CardActionArea>
-        </Card>
+        </HomeCard>
       </Grid>
     </Grid>
   );

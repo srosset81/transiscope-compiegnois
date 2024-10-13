@@ -31,6 +31,9 @@ const customTheme = createTheme(theme, {
     },
     white: {
       main: '#fff'
+    },
+    background: {
+      default: '#fff',
     }
   },
 });

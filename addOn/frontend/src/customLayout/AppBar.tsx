@@ -26,7 +26,7 @@ const AppTitle = styled(Typography)(({ theme }) => ({
 
 const AppBar = () => {
   return (
-    <MuiAppBar position="fixed">
+    <MuiAppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <Box sx={{ marginRight: { xs: 0, lg: 1 } }}>
           <Link to="/" color="inherit" underline="none">
@@ -49,7 +49,15 @@ const AppBar = () => {
         </Box>
 
         <Stack sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }} spacing={2} direction="row">
-          <Button color="inherit" size="large" startIcon={<MapIcon />} component={Link} to={'/Organization?view=map'}>
+          <Button
+            color="inherit"
+            size="large"
+            startIcon={<MapIcon />}
+            component={Link}
+            to={
+              '/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10'
+            }
+          >
             Carte des alternatives
           </Button>
           <Button color="inherit" size="large" startIcon={<CalendarMonthIcon />} component={Link} to={'/Event'}>
