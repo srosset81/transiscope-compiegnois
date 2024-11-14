@@ -16,5 +16,6 @@ Object.keys(customizedResources).forEach((key) => {
 
 // Change "Organisation" to "Alternative" wording
 customizedResources['Organization'].translations.fr.name = 'Alternative |||| Alternatives';
+customizedResources['Organization'].translations.fr.searchLabel = 'Rechercher une alternative';
 
 export default customizedResources;
