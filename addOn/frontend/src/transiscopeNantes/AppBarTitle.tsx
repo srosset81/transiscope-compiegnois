@@ -22,7 +22,7 @@ const AppTitle = styled(Typography)(({ theme }) => ({
 
 const AppBarTitle = () => {
   return (
-    <AppTitle component="h1" variant="h6">
+    <AppTitle component="div" variant="h6">
       <Link to="/" color="inherit" underline="none">
         Transiscope <span>en Pays Nantais</span>
       </Link>

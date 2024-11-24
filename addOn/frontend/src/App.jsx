@@ -6,12 +6,12 @@ import { LoginPage } from '@semapps/auth-provider';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient } from 'react-query';
 
-import HomePage from './HomePage';
+import HomePage from './transiscopeNantes/HomePage';
 import config from './config/config';
 import i18nProvider from './config/i18nProvider';
 import authProvider from './config/authProvider';
 import dataProvider from './config/dataProvider';
-import customTheme from './customTheme';
+import customTheme from './transiscopeNantes/theme';
 import resources from './customResources';
 
 import { Layout } from './common/layout';
