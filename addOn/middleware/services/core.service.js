@@ -1,4 +1,5 @@
 const path = require('path');
+const urlJoin = require("url-join");
 const { CoreService } = require('@semapps/core');
 const { pair, semapps, og, as } = require('@semapps/ontologies');
 const CONFIG = require('../config/config');
@@ -14,6 +15,7 @@ module.exports = {
       user: CONFIG.JENA_USER,
       password: CONFIG.JENA_PASSWORD,
       mainDataset: CONFIG.MAIN_DATASET,
+      fusekiBase: CONFIG.SEMAPPS_FUSEKI_BASE,
     },
     ontologies: [pair, semapps, og, as],
     containers,
@@ -24,7 +26,12 @@ module.exports = {
     api: {
       port: CONFIG.PORT,
     },
-    ldp: false,
+    ldp: {
+      preferredViewForResource: async (resourceUri, containerPreferredView) => {
+        if (!containerPreferredView) return resourceUri;
+        return urlJoin(CONFIG.FRONT_URL, containerPreferredView, encodeURIComponent(resourceUri), 'show')
+      }
+    },
     void: {
       title: CONFIG.INSTANCE_NAME,
       description: CONFIG.INSTANCE_DESCRIPTION

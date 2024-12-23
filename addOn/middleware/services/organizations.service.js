@@ -3,6 +3,7 @@ const { ControlledContainerMixin, DisassemblyMixin } = require('@semapps/ldp');
 const { getDefaultRights } = require('../config/defaultRights');
 
 module.exports = {
+  dependencies: ['ldp.resource'],
   name: 'organizations',
   mixins: [ControlledContainerMixin, DisassemblyMixin],
   settings: {

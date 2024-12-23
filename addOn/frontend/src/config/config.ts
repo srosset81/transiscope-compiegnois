@@ -2,6 +2,7 @@ import MapIcon from '@mui/icons-material/Map';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { LayoutOptions } from "../layouts/LayoutContext";
 import AppBarTitle from '../transiscopeNantes/AppBarTitle';
+import Footer from '../transiscopeNantes/Footer';
 
 declare global {
   interface Window {
@@ -54,7 +55,8 @@ const config: ConfigInterface = {
           link: '/Event',
           icon: CalendarMonthIcon
         }
-      ]
+      ],
+      footer: Footer
     },
   },
 };
