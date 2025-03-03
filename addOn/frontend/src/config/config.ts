@@ -44,14 +44,13 @@ const config: ConfigInterface = {
       mainMenu: [
         {
           resource: 'Organization',
-          label: 'Carte des alternatives',
-          mobileLabel: 'Carte',
+          label: 'La carte',
           link: '/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10',
           icon: MapIcon
         },
         {
           resource: 'Event',
-          label: 'Agenda',
+          label: "L'agenda",
           link: '/Event',
           icon: CalendarMonthIcon
         }
