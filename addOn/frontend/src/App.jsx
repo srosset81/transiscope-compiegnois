@@ -1,26 +1,26 @@
-import React from 'react';
-import { Admin, Resource, memoryStore } from 'react-admin';
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { LoginPage } from '@semapps/auth-provider';
-import { BrowserRouter } from 'react-router-dom';
-import { QueryClient } from 'react-query';
+import React from "react";
+import { Admin, Resource, memoryStore } from "react-admin";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { LoginPage } from "@semapps/auth-provider";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient } from "react-query";
 
-import HomePage from './transiscopeNantes/HomePage';
-import config from './config/config';
-import i18nProvider from './config/i18nProvider';
-import authProvider from './config/authProvider';
-import dataProvider from './config/dataProvider';
-import customTheme from './transiscopeNantes/theme';
-import resources from './customResources';
+import HomePage from "./transiscopeCompiegnois/HomePage";
+import config from "./config/config";
+import i18nProvider from "./config/i18nProvider";
+import authProvider from "./config/authProvider";
+import dataProvider from "./config/dataProvider";
+import customTheme from "./transiscopeCompiegnois/theme";
+import resources from "./customResources";
 
-import { Layout } from './common/layout';
-import { LayoutProvider } from './layouts/LayoutProvider';
+import { Layout } from "./common/layout";
+import { LayoutProvider } from "./layouts/LayoutProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     },
   },
 });

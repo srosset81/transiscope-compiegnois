@@ -1,8 +1,8 @@
-import MapIcon from '@mui/icons-material/Map';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MapIcon from "@mui/icons-material/Map";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { LayoutOptions } from "../layouts/LayoutContext";
-import AppBarTitle from '../transiscopeNantes/AppBarTitle';
-import Footer from '../transiscopeNantes/Footer';
+import AppBarTitle from "../transiscopeCompiegnois/AppBarTitle";
+import Footer from "../transiscopeCompiegnois/Footer";
 
 declare global {
   interface Window {
@@ -30,32 +30,32 @@ const config: ConfigInterface = {
   importableResources: [],
 
   // Application title
-  title: 'Transiscope en Pays Nantais',
+  title: "Transiscope en Pays Compiégnois",
 
   // UI layout configuration
   layout: {
-    name: 'topMenu',
+    name: "topMenu",
     options: {
       logo: {
-        url: '/logo192.png',
-        alt: 'Transiscope en Pays Nantais'
+        url: "/logo192.png",
+        alt: "Transiscope en Pays Compiégnois",
       },
       title: AppBarTitle,
       mainMenu: [
         {
-          resource: 'Organization',
-          label: 'La carte',
-          link: '/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=47.2186353776589&lng=-1.5545654296875002&zoom=10',
-          icon: MapIcon
+          resource: "Organization",
+          label: "La carte",
+          link: "/Organization?perPage=500&sort=pair%3Alabel&view=map&lat=49.411643322126615&lng=2.8334426879882817&zoom=12",
+          icon: MapIcon,
         },
         {
-          resource: 'Event',
+          resource: "Event",
           label: "L'agenda",
-          link: '/Event',
-          icon: CalendarMonthIcon
-        }
+          link: "/Event",
+          icon: CalendarMonthIcon,
+        },
       ],
-      footer: Footer
+      footer: Footer,
     },
   },
 };

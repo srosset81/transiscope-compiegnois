@@ -32,10 +32,10 @@ stop-middleware:
 publish-middleware:
 	@echo "Which version?" && \
 	read version && \
-	docker tag transiscope-nantes/middleware registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/middleware && \
-	docker tag transiscope-nantes/middleware registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/middleware:$$version && \
-	docker push registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/middleware && \
-	docker push registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/middleware:$$version
+	docker tag transiscope-compiegnois/middleware srosset81/transiscope-compiegnois-middleware && \
+	docker tag transiscope-compiegnois/middleware srosset81/transiscope-compiegnois-middleware:$$version && \
+	docker push srosset81/transiscope-compiegnois-middleware && \
+	docker push srosset81/transiscope-compiegnois-middleware:$$version
 
 ## Frontend
 build-frontend:
@@ -59,10 +59,10 @@ stop-frontend:
 publish-frontend:
 	@echo "Which version?" && \
 	read version && \
-	docker tag transiscope-nantes/frontend registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/frontend && \
-	docker tag transiscope-nantes/frontend registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/frontend:$$version && \
-	docker push registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/frontend && \
-	docker push registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/frontend:$$version
+	docker tag transiscope-compiegnois/frontend srosset81/transiscope-compiegnois-frontend && \
+	docker tag transiscope-compiegnois/frontend srosset81/transiscope-compiegnois-frontend:$$version && \
+	docker push srosset81/transiscope-compiegnois-frontend && \
+	docker push srosset81/transiscope-compiegnois-frontend:$$version
 
 ## Global start/stop
 start-local:

@@ -14,7 +14,7 @@ services:
   frontend:
     build:
       dockerfile: ./Dockerfile.frontend.dev
-    image: transiscope-nantes/frontend-dev
+    image: transiscope-compiegnois/frontend-dev
     volumes:
       - ./addOn/frontend:/archipelago/frontend/addOn
     command: bash -c "yarn dev --host & nodemon --watch ./addOn --ext js,jsx,ts,tsx,html -x \"cp -r ./addOn/* . && (. ./env.sh public)\""

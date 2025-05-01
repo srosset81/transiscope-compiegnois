@@ -4,7 +4,7 @@
 #PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin
 
 # check if the path is ok
-cd deploy-archipelago-nantes
+cd transiscope-compiegnois
 
 make compact-prod
 

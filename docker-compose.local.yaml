@@ -10,9 +10,9 @@ services:
   middleware:
     build:
       dockerfile: ./Dockerfile.middleware
-    image: transiscope-nantes/middleware
+    image: transiscope-compiegnois/middleware
 
   frontend:
     build:
       dockerfile: ./Dockerfile.frontend
-    image: transiscope-nantes/frontend
+    image: transiscope-compiegnois/frontend

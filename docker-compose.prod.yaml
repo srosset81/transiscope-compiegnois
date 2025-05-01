@@ -36,18 +36,18 @@ services:
     container_name: fuseki
 
   middleware:
-    image: registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/middleware:${MIDDLEWARE_VERSION:-latest}
+    image: srosset81/transiscope-compiegnois-middleware:${MIDDLEWARE_VERSION:-latest}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.middleware.rule=Host(`data.nantes.transiscope.org`)"
+      - "traefik.http.routers.middleware.rule=Host(`data.compiegnois.transiscope.org`)"
       - "traefik.http.routers.middleware.entrypoints=websecure"
       - "traefik.http.routers.middleware.tls.certresolver=myresolver"
 
   frontend:
-    image: registry.gitlab.com/transiscope-nantes/deploy-archipelago-nantes/frontend:${FRONTEND_VERSION:-latest}
+    image: srosset81/transiscope-compiegnois-frontend:${FRONTEND_VERSION:-latest}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`nantes.transiscope.org`)"
+      - "traefik.http.routers.frontend.rule=Host(`compiegnois.transiscope.org`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
 
