@@ -74,6 +74,9 @@ start-dev:
 start-prod:
 	$(PROD) up -d
 
+stop-prod:
+	$(PROD) down
+
 stop:
 	$(LOCAL) down
 	$(DEV) down
