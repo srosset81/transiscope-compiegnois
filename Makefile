@@ -91,6 +91,9 @@ logs:
 update-prod:
 	make stop-middleware stop-frontend start-middleware-prod start-frontend-prod
 
+upgrade:
+	$(PROD) pull
+
 set-compact-cron:
 	(crontab -l 2>/dev/null; echo "0 4 * * * ./compact-cron.sh >> /tmp/cronlog.txt") | crontab -
 
